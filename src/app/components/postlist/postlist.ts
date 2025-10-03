@@ -14,4 +14,13 @@ export class Postlist {
   }
 
   fetchingData = signal(false);
+
+  inputChange(event: Event) {
+    console.log('Input changed', (event.target as HTMLInputElement).value);
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    console.log('Submitted');
+  }
 }
