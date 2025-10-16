@@ -3,16 +3,12 @@
     <div>
       <h2>{{ postObject.title }}</h2>
       <p>{{ postObject.content }}</p>
+      <p>Bound Title: {{title()}}</p>
 
       <form>
-        <input
-          type="text"
-          placeholder="Add Title"
-          (keyup.enter)="inputChange($event)"
-        />
-
-        <button type="submit" (click)="onSubmit($event)">Submit</button>
+        <input placeholder="Add title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" />
       </form>
+      <button (click)="changeTitle()">Change title</button>
     </div>
 
     <img [src]="postObject.image" alt="post-{{ postObject.title }}" />

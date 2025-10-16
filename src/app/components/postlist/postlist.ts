@@ -1,12 +1,15 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-postlist',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './postlist.html',
-  styleUrl: './postlist.scss'
+  styleUrl: './postlist.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Postlist {
+  title = signal('Initial Title');
   postObject = {
     title: 'Post Title',
     content: 'This is the content of the post.',
@@ -15,12 +18,7 @@ export class Postlist {
 
   fetchingData = signal(false);
 
-  inputChange(event: Event) {
-    console.log('Input changed', (event.target as HTMLInputElement).value);
-  }
-
-  onSubmit(event: Event) {
-    event.preventDefault();
-    console.log('Submitted');
+  changeTitle() {
+    this.title.set('Title Changed!');
   }
 }
