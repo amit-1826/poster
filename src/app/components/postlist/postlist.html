@@ -1,16 +1,28 @@
 <div>
+  @for (postObject of postList; track postObject.id;) {
   <div class="post">
     <div>
       <h2>{{ postObject.title }}</h2>
-      <p>{{ postObject.content }}</p>
-      <p>Bound Title: {{title()}}</p>
-
-      <form>
-        <input placeholder="Add title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" />
-      </form>
-      <button (click)="changeTitle()">Change title</button>
+      @if (postObject.content) {
+        <p>{{ postObject.content }}</p>
+      } @else {
+        <p>No content available for this post.</p>
+      }
     </div>
+
+
+    @switch (postObject.type) {
+      @case ('Private') {
+        <span class="badge private">Private</span>
+      }
+      @default {
+        <span class="badge public">Public</span>
+      }
+    }
 
     <img [src]="postObject.image" alt="post-{{ postObject.title }}" />
   </div>
+  } @empty {
+    <p>No posts available.</p>
+  }
 </div>
