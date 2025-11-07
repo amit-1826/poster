@@ -1,28 +1,23 @@
-<div>
+<div class="postlist">
+
+  <h2 class="postlist-title">Postlist</h2>
+
   @for (postObject of postList; track postObject.id;) {
   <div class="post">
-    <div>
-      <h2>{{ postObject.title }}</h2>
+    <div class="post-content">
+      <h2 class="post-title" [style.fontSize.px]="25">{{ postObject.title }}</h2>
       @if (postObject.content) {
-        <p>{{ postObject.content }}</p>
+        <p class="paragraph">{{ postObject.content }}</p>
       } @else {
-        <p>No content available for this post.</p>
+        <p [ngClass]="['paragraph']" [ngStyle]="{'color': 'black', 'fontSize.px': 20}">No content available for this post.</p>
       }
     </div>
 
+  <span [class.private]="postObject.type === 'Private'" [class.public]="postObject.type === 'Public'" [ngClass]="{'badge': true}" >Private</span>
 
-    @switch (postObject.type) {
-      @case ('Private') {
-        <span class="badge private">Private</span>
-      }
-      @default {
-        <span class="badge public">Public</span>
-      }
-    }
-
-    <img [src]="postObject.image" alt="post-{{ postObject.title }}" />
+    <img [ngClass]="'post-img'" [src]="postObject.image" alt="post-{{ postObject.title }}" />
   </div>
   } @empty {
-    <p>No posts available.</p>
+    <p class="paragraph fallback">No posts available.</p>
   }
 </div>
