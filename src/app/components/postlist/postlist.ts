@@ -1,10 +1,12 @@
 import { NgClass, NgStyle } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AutoFocus } from '../../directives/auto-focus';
+import { Highlight } from '../../directives/highlight';
 
 @Component({
   selector: 'app-postlist',
-  imports: [FormsModule, NgClass, NgStyle],
+  imports: [FormsModule, NgClass, NgStyle, AutoFocus, Highlight],
   templateUrl: './postlist.html',
   styleUrl: './postlist.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -25,5 +27,15 @@ export class Postlist {
       content: "This is the content of the post 2.",
       image: 'https://picsum.photos/200?random=2'
     }
-  ]
+  ];
+
+  filteredPosts = this.postList;
+
+
+  filterPosts($event: Event) {
+    const input = ($event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredPosts = this.postList.filter(post =>
+      post.title.toLowerCase().includes(input)
+    );
+}
 }

@@ -2,18 +2,20 @@
 
   <h2 class="postlist-title">Postlist</h2>
 
-  @for (postObject of postList; track postObject.id;) {
-  <div class="post">
+  <input [appAutoFocus]="true" type="text" (input)="filterPosts($event)" name="Search" id="Search" placeholder="Search posts..." />
+
+  @for (postObject of filteredPosts; track postObject.id;) {
+  <div class="post" appHighlight>
     <div class="post-content">
-      <h2 class="post-title" [style.fontSize.px]="25">{{ postObject.title }}</h2>
+      <h2 class="post-title">{{ postObject.title }}</h2>
       @if (postObject.content) {
         <p class="paragraph">{{ postObject.content }}</p>
       } @else {
-        <p [ngClass]="['paragraph']" [ngStyle]="{'color': 'black', 'fontSize.px': 20}">No content available for this post.</p>
+        <p [ngClass]="['paragraph']">No content available for this post.</p>
       }
     </div>
 
-  <span [class.private]="postObject.type === 'Private'" [class.public]="postObject.type === 'Public'" [ngClass]="{'badge': true}" >Private</span>
+  <span [class.private]="postObject.type === 'Private'" [class.public]="postObject.type === 'Public'" [ngClass]="{'badge': true}" >{{postObject.type}}</span>
 
     <img [ngClass]="'post-img'" [src]="postObject.image" alt="post-{{ postObject.title }}" />
   </div>
