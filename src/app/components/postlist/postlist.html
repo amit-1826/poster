@@ -9,7 +9,7 @@
   />
 
   @for (postObject of filteredPosts; track postObject.id) {
-    <app-post-card [post]="postObject" />
+    <app-post-card [post]="postObject" (like)="likePost($event)" />
   } @empty {
     <p class="paragraph fallback">No posts available.</p>
   }

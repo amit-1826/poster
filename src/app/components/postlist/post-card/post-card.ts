@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { IPost } from '../../../common/post.model';
 import { NgClass } from '@angular/common';
 import { Highlight } from '../../../directives/highlight';
@@ -14,4 +14,10 @@ import { Highlight } from '../../../directives/highlight';
 })
 export class PostCard {
   post = input.required<IPost>();
+  like = output<number>();
+
+  likePost(event: Event) {
+    event.stopPropagation();
+    this.like.emit(this.post().id);
+  }
 }
