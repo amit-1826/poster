@@ -22,7 +22,11 @@
 }
 
 .like-icon {
-  height: 15px;
+  height: 18px;
+}
+
+.like-icon:active {
+  transform: scale(1.2);
 }
 
 .btn-like {
@@ -31,6 +35,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 5px;
+}
+
+.like-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: auto;
+  cursor: pointer;
 }
 
 .btn-like:active {

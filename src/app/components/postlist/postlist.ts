@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AutoFocus } from '../../directives/auto-focus';
 import { IPost } from '../../common/post.model';
@@ -12,6 +12,9 @@ import { PostCard } from "./post-card/post-card";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Postlist {
+
+  searchTerm = signal<string>('');
+
   postList = signal<IPost[]>(
     [
       {
@@ -33,14 +36,22 @@ export class Postlist {
     ]
   )
 
-  filteredPosts = this.postList();
+  filteredPosts = computed(() => {
 
+    const search = this.searchTerm().toLowerCase();
+    if (!search) {
+      return this.postList();
+    }
 
-  filterPosts($event: Event) {
-    const input = ($event.target as HTMLInputElement).value.toLowerCase();
-    this.filteredPosts = this.postList().filter(post =>
-      post.title.toLowerCase().includes(input)
+    return [...this.postList()].filter(post =>
+      post.title.toLowerCase().includes(search)
     );
+  })
+
+
+  onInputChange($event: Event) {
+    const input = ($event.target as HTMLInputElement).value.toLowerCase();
+    this.searchTerm.set(input);
   }
 
   likePost(id: number) {
