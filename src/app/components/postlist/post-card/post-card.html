@@ -7,7 +7,7 @@
       <p [ngClass]="['paragraph']">-</p>
     }
 
-    <button class="btn btn-primary btn-like">
+    <button class="btn btn-primary btn-like" (click)="likePost($event)">
       <img
         class="like-icon"
         src="../../../../assets/like-button.png"

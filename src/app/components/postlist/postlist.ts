@@ -42,4 +42,15 @@ export class Postlist {
       post.title.toLowerCase().includes(input)
     );
   }
+
+  likePost(id: number) {
+    this.postList.update((prevState) => {
+      return prevState.map((post) => {
+        if (post.id === id) {
+          post.likes++;
+        }
+        return post;
+      })
+    })
+  }
 }

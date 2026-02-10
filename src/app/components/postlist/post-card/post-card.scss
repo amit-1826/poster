@@ -33,6 +33,10 @@
   gap: 5px;
 }
 
+.btn-like:active {
+  transform: scale(1.1);
+}
+
 .btn-delete {
   margin-top: auto;
 }
