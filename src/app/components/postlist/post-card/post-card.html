@@ -1,31 +1,26 @@
 <div class="post" appHighlight>
   <div class="post-content">
     <h2 class="post-title">{{ post().title }}</h2>
-    @if (post().content) {
-      <p class="paragraph">{{ post().content }}</p>
-    } @else {
-      <p [ngClass]="['paragraph']">-</p>
-    }
+    <p class="paragraph">{{ post().content || "-" }}</p>
 
-    <button class="btn btn-primary btn-like" (click)="likePost($event)">
+    <div class="like-container">
       <img
+        (click)="likePost($event)"
         class="like-icon"
         src="../../../../assets/like-button.png"
         alt="like icon"
       />
-      {{ post().likes }}
-    </button>
+      <small>{{ post().likes }}</small>
+    </div>
   </div>
 
   <span
-    [class.private]="post().type === 'Private'"
-    [class.public]="post().type === 'Public'"
-    [ngClass]="{ badge: true }"
+    [class]="post().type === 'Private' ? 'private badge' : 'public badge'"
     >{{ post().type }}</span
   >
 
   <img
-    [ngClass]="'post-img'"
+    [class]="'post-img'"
     [src]="post().image"
     alt="post-{{ post().title }}"
   />

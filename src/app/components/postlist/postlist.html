@@ -2,13 +2,13 @@
   <input
     [appAutoFocus]="true"
     type="text"
-    (input)="filterPosts($event)"
+    (input)="onInputChange($event)"
     name="Search"
     id="Search"
     placeholder="Search posts..."
   />
 
-  @for (postObject of filteredPosts; track postObject.id) {
+  @for (postObject of filteredPosts(); track postObject.id) {
     <app-post-card [post]="postObject" (like)="likePost($event)" />
   } @empty {
     <p class="paragraph fallback">No posts available.</p>
