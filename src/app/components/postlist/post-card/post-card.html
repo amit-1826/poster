@@ -1,6 +1,6 @@
 <div class="post" appHighlight>
   <div class="post-content">
-    <h2 class="post-title">{{ post().title }}</h2>
+    <h2 class="post-title">{{ post().title | titlecase }}</h2>
     <p class="paragraph">{{ post().content || "-" }}</p>
 
     <div class="like-container">
@@ -10,14 +10,19 @@
         src="../../../../assets/like-button.png"
         alt="like icon"
       />
-      <small>{{ post().likes }}</small>
+      <small>{{ post().likes | number: "1.0-0" }}</small>
     </div>
   </div>
 
-  <span
-    [class]="post().type === 'Private' ? 'private badge' : 'public badge'"
-    >{{ post().type }}</span
-  >
+  <div class="post-metadata">
+    <span
+      [class]="post().type === 'Private' ? 'private badge' : 'public badge'"
+      >{{ post().type }}</span
+    >
+    <small class="published-date">
+      Published At: {{ post().publishedAt | date }}
+    </small>
+  </div>
 
   <img
     [class]="'post-img'"
