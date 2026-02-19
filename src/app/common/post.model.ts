@@ -5,4 +5,5 @@ export interface IPost {
     content: string | null,
     image: string,
     likes: number
+    publishedAt: Date | string;
 }
