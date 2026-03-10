@@ -10,7 +10,7 @@
         src="../../../../assets/like-button.png"
         alt="like icon"
       />
-      <small>{{ post().likes | number: "1.0-0" }}</small>
+      <small>{{ post().likes | abbreviateNumber }}</small>
     </div>
   </div>
 
@@ -20,7 +20,7 @@
       >{{ post().type }}</span
     >
     <small class="published-date">
-      Published At: {{ post().publishedAt | date }}
+      Published At: {{ post().publishedAt | relativeTime }}
     </small>
   </div>
 

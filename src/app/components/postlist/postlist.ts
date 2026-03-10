@@ -33,7 +33,7 @@ export class Postlist {
         content: "This is the content of the post 2.",
         image: 'https://picsum.photos/200?random=2',
         likes: 17895457,
-        publishedAt: new Date()
+        publishedAt: new Date('2026-02-13')
       }
     ]
   )
