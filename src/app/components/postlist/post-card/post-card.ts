@@ -1,9 +1,10 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { IPost } from '../../../common/post.model';
 import { Highlight } from '../../../directives/highlight';
 import { TitleCasePipe } from '@angular/common';
 import { AbbreviateNumberPipe } from '../../../common/abbreviate-number.pipe';
 import { RelativeTimePipe } from '../../../common/pipes/relative-time-pipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -20,8 +21,14 @@ export class PostCard {
   post = input.required<IPost>();
   like = output<number>();
 
+  router = inject(Router);
+
   likePost(event: Event) {
     event.stopPropagation();
     this.like.emit(this.post().id);
+  }
+
+  viewDetail() {
+    this.router.navigate([this.post().id]);
   }
 }

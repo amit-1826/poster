@@ -1,4 +1,4 @@
-<div class="post" appHighlight>
+<div class="post" appHighlight (click)="viewDetail()">
   <div class="post-content">
     <h2 class="post-title">{{ post().title | titlecase }}</h2>
     <p class="paragraph">{{ post().content || "-" }}</p>
