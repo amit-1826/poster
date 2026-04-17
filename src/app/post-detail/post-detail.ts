@@ -22,7 +22,7 @@ export class PostDetail implements OnInit {
     const currentPost = DUMMY_POSTS.find((element) => element.id == this.id());
     if (currentPost) {
       // Note: this is the recommended way to set the title for a specific page/component, instead of using the title strategy
-      // this.titleService.setTitle(`${currentPost.title} | Poster App`);
+      this.titleService.setTitle(`${currentPost.title} | Poster App`);
     }
   }
 }

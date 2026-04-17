@@ -30,11 +30,6 @@ export class PostCard {
   }
 
   viewDetail() {
-    // this.router.navigate(['posts', this.post().id]);
-    // Note: to get data in the title strategy, we need to pass it in the state of the navigation extras, since we don't want to have it in the URL
-    this.router.navigate([this.post().id], {
-      relativeTo: this.route,
-      state: { postTitle: this.post().title }
-    });
+    this.router.navigate(['posts', this.post().id]);
   }
 }
