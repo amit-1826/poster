@@ -4,7 +4,7 @@ import { Highlight } from '../../../directives/highlight';
 import { TitleCasePipe } from '@angular/common';
 import { AbbreviateNumberPipe } from '../../../common/abbreviate-number.pipe';
 import { RelativeTimePipe } from '../../../common/pipes/relative-time-pipe';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-card',
@@ -22,6 +22,7 @@ export class PostCard {
   like = output<number>();
 
   router = inject(Router);
+  route = inject(ActivatedRoute);
 
   likePost(event: Event) {
     event.stopPropagation();
@@ -29,6 +30,6 @@ export class PostCard {
   }
 
   viewDetail() {
-    this.router.navigate([this.post().id]);
+    this.router.navigate(['posts', this.post().id]);
   }
 }
