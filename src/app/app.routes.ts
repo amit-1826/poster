@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { Postlist } from './components/postlist/postlist';
-import { CreatePost } from './components/create-post/create-post';
+import { CreatePost } from './components/post/create-post/create-post';
 import { NotFound } from './components/not-found/not-found';
-import { PostDetail } from './post-detail/post-detail';
-import { Post } from './post/post';
+import { Post } from './components/post/post';
+import { PostDetail } from './components/post/post-detail/post-detail';
+import { Postlist } from './components/post/postlist/postlist';
 
 export const routes: Routes = [
     {

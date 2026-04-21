@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AutoFocus } from '../../directives/auto-focus';
-import { IPost } from '../../common/post.model';
 import { PostCard } from "./post-card/post-card";
-import { Title } from '@angular/platform-browser';
-import { DUMMY_POSTS } from '../../dummy-posts';
+import { AutoFocus } from '../../../common/directives/auto-focus';
+import { IPost } from '../../../common/models/post.model';
+import { DUMMY_POSTS } from '../../../dummy-posts';
 
 @Component({
   selector: 'app-postlist',
@@ -13,19 +12,13 @@ import { DUMMY_POSTS } from '../../dummy-posts';
   styleUrl: './postlist.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Postlist implements OnInit {
-
-  private titleService = inject(Title);
+export class Postlist {
 
   searchTerm = signal<string>('');
 
   postList = signal<IPost[]>(
     DUMMY_POSTS
   )
-
-  ngOnInit(): void {
-    // this.titleService.setTitle('PostsList | Poster App');
-  }
 
   filteredPosts = computed(() => {
 
