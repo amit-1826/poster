@@ -1,9 +1,4 @@
 import { Routes } from '@angular/router';
-import { CreatePost } from './components/post/create-post/create-post';
-import { NotFound } from './components/not-found/not-found';
-import { Post } from './components/post/post';
-import { PostDetail } from './components/post/post-detail/post-detail';
-import { Postlist } from './components/post/postlist/postlist';
 
 export const routes: Routes = [
     {
@@ -13,26 +8,10 @@ export const routes: Routes = [
     },
     {
         path: 'posts',
-        component: Post,
-        children: [
-            {
-                path: '',
-                component: Postlist,
-                title: 'PostsList'
-            },
-            {
-                path: 'add',
-                component: CreatePost,
-                title: 'Add Post'
-            },
-            {
-                path: ':id',
-                component: PostDetail
-            },
-        ]
+        loadChildren: () => import('./components/post/posts.routes').then((featureRoute) => featureRoute.POST_ROUTES)
     },
     {
         path: '**',
-        component: NotFound
+        loadComponent: () => import('./components/not-found/not-found').then((c) => c.NotFound)
     }
 ];
